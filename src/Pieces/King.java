@@ -17,14 +17,4 @@ public class King extends Piece{
     public List<Location> getValidMoves(Board board) {
         return null;
     }
-
-    @Override
-    public List<Location> getValidMoves(Board board, Square square) {
-        return null;
-    }
-
-    @Override
-    public void makeMove(Square square) {
-
-    }
 }

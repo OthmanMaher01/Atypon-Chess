@@ -4,6 +4,7 @@ import Pieces.Piece;
 import Pieces.PieceFactory;
 import Squares.Location;
 import Squares.Square;
+import enums.ConsoleColor;
 import enums.File;
 import enums.ChessColors;
 
@@ -47,18 +48,33 @@ public class Board {
     }
 
     public void printBoard() {
+        System.out.print("  ");
+        for (File file : File.values()){
+            System.out.print(ConsoleColor.RESET+file.name()+ "  ");
+        }
+        System.out.println(ConsoleColor.RESET);
         for (int i = 0; i < board.length; i++) {
-            System.out.print(boardSize - i + " ");
+            System.out.print(ConsoleColor.RESET);
+            System.out.print(boardSize - i + " "+ConsoleColor.RESET);
             for (int j =0;j<board[i].length;j++){
                 if (board[i][j].isOccupied()){
                     Piece piece = board[i][j].getCurrentPiece();
                     String pieceName = piece.getType().name();
-                    System.out.print(pieceName.charAt(0)+""+pieceName.charAt(pieceName.length()-1)+" ");
+                    if (piece.isWhite()) {
+                        System.out.print(pieceName.charAt(0) + "" + pieceName.charAt(pieceName.length() - 1) + " ");
+                    }
+                    else {
+                        System.out.print(ConsoleColor.BLACK+pieceName.charAt(0) + "" + pieceName.charAt(pieceName.length() - 1) + " ");
+
+                    }
                 }
                 else {
-                    System.out.print("-  ");
+                    System.out.print(ConsoleColor.RESET+"-  ");
                 }
             }
+            System.out.print(ConsoleColor.RESET);
+            System.out.print(boardSize-i+ConsoleColor.RESET);
+
             System.out.println();
 
         }
