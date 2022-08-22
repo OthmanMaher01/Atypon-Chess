@@ -32,7 +32,14 @@ public class Bishop extends Piece{
 
     @Override
     public List<Location> getValidMoves(Board board, Square square) {
-        return null;
+        List<Location> moveCandidates = new ArrayList<>();
+        Map<Location, Square> squareMap = board.getLocationMap();
+        Location current = square.getLocation();
+        getMoves(moveCandidates, squareMap, current, 1, 1);
+        getMoves(moveCandidates, squareMap, current, 1, -1);
+        getMoves(moveCandidates, squareMap, current, -1, -1);
+        getMoves(moveCandidates, squareMap, current, -1, 1);
+        return moveCandidates;
     }
 
     private void getMoves(

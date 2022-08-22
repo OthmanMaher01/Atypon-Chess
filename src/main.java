@@ -4,6 +4,7 @@ import Squares.Square;
 import enums.ConsoleColor;
 import enums.File;
 import game.Board;
+import game.ChessGame;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -11,7 +12,8 @@ import java.util.Scanner;
 public class main {
     public static void main(String args[])  //static method
     {
-        Board board = new Board();
+        new ChessGame().start();
+       /* Board board = new Board();
         board.printBoard();
         Scanner scanner = new Scanner(System.in);
         while(true){
@@ -26,6 +28,7 @@ public class main {
             try {
                 fromSq.getCurrentPiece().movePiece(toSq,board);
             }catch (Exception e){
+
                 System.out.println("Try again");
                 continue;
             }
@@ -34,6 +37,6 @@ public class main {
             board.printBoard();
 
 
-        }
+        }*/
     }
 }
