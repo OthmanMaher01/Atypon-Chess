@@ -29,6 +29,12 @@ public class Bishop extends Piece{
 
 
     }
+
+    @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        return null;
+    }
+
     private void getMoves(
             List<Location> candidates,
             Map<Location, Square> squareMap,

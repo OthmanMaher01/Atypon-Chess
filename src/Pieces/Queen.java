@@ -14,6 +14,11 @@ public class Queen extends Piece{
     }
 
     @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        return null;
+    }
+
+    @Override
     public List<Location> getValidMoves(Board board) {
         return null;
     }

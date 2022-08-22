@@ -15,6 +15,12 @@ public class Rook extends Piece{
         super(isWhite);
         type= PiecesType.ROOK;
     }
+
+    @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        return null;
+    }
+
     private void getFileCandidates(
             List<Location> moveCandidates,
             Map<Location, Square> squareMap,

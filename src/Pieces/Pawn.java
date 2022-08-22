@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
 public class Pawn extends Piece {
     private boolean isFirstMove = true;
 
+    @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        return null;
+    }
+
     public Pawn(boolean isWhite) {
         super(isWhite);
         type = PiecesType.PAWN;

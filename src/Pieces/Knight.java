@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Knight extends Piece{
+    @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        return null;
+    }
+
     public Knight(boolean isWhite) {
         super(isWhite);
         type= PiecesType.KNIGHT;
