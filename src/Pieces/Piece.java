@@ -47,7 +47,6 @@ public abstract class Piece {
     public abstract List<Location> getValidMoves(Board board,Square square);
     public void movePiece(Square square,Board board){
         List<Location> validMoves = getValidMoves(board);
-        System.out.println("valid moves :"+validMoves);
         if (!validMoves.contains(square.getLocation())){
             throw new IllegalStateException();
         }
