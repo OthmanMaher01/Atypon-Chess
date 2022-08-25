@@ -12,12 +12,15 @@ import java.util.stream.Collectors;
 public class King extends Piece {
     private final Piece bishop;
     private final Piece rook;
+    private boolean isChecked;
+
 
     public King(boolean isWhite) {
         super(isWhite);
         type = PiecesType.KING;
         bishop = new Bishop(isWhite);
         rook = new Rook(isWhite);
+        isChecked = false;
     }
 
     @Override
@@ -44,4 +47,47 @@ public class King extends Piece {
 
 
     }
+
+
+//    public boolean isInCheckmate(Board board)
+//    {
+//        Vector<Piece> enemies = this.player.getEnemyPieces(this.player.playerColor);
+//        Vector<Piece> attackingEnemies = new Vector<Piece>(1);
+//
+//        for(int i = 0; i < enemies.size(); i++)
+//        {
+//            if(enemies.elementAt(i).getType() != Type.KING && canKillKing(enemies.elementAt(i), this.x, this.y))
+//            {
+//                kingInCheck = true;
+//                /*
+//                 * if there's more than one enemy that can kill the king in a given space,
+//                 * an ally cannot defend against both, and it cannot defend against knights.
+//                 */
+//                if(attackingEnemies.size() < 2 && enemies.elementAt(i).getType() != Type.KNIGHT)
+//                {
+//                    //keep a list of attacking enemies to potentially require an ally to defend against
+//                    attackingEnemies.add(enemies.elementAt(i));
+//                }
+//            }
+//        }
+//
+//        if(!kingCanMove(this.x, this.y)
+//                && !kingCanMove(this.x + 1, this.y)
+//                && !kingCanMove(this.x + 1, this.y + 1)
+//                && !kingCanMove(this.x + 1, this.y - 1)
+//                && !kingCanMove(this.x - 1, this.y)
+//                && !kingCanMove(this.x - 1, this.y + 1)
+//                && !kingCanMove(this.x - 1, this.y - 1)
+//                && !kingCanMove(this.x + 1, this.y + 1))
+//        {
+//            //if(allyCanDefend(attackingEnemies))
+//            //return false;
+//
+//
+//            return true;
+//
+//        }
+//        return false;
+//    }
+
 }

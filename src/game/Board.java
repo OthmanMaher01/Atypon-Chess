@@ -8,13 +8,26 @@ import enums.ConsoleColor;
 import enums.File;
 import enums.ChessColors;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Board {
     private final Integer boardSize=8;
     private final Map<Location, Square> locationMap;
     Square[][] board= new Square[boardSize][boardSize];
+
+    public List<Piece> getWhitePieces() {
+        return whitePieces;
+    }
+
+    public List<Piece> getBlackPieces() {
+        return blackPieces;
+    }
+
+    private final List<Piece> whitePieces = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
 
 
     public Board() {
@@ -31,6 +44,11 @@ public class Board {
                     tempSquare.setCurrentPiece(piece);
                     tempSquare.setOccupied(true);
                     piece.setCurrentSquare(tempSquare);
+                    if (piece.isWhite()) {
+                        whitePieces.add(piece);
+                    } else {
+                        blackPieces.add(piece);
+                    }
                 }
 
                 board[i][column]=tempSquare;
