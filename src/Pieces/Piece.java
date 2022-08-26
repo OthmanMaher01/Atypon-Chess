@@ -45,15 +45,47 @@ public abstract class Piece {
 
     public abstract List<Location> getValidMoves(Board board);
     public abstract List<Location> getValidMoves(Board board,Square square);
-    public void movePiece(Square square,Board board){
+    public void movePiece(Square square,Board board) throws Exception {
         List<Location> validMoves = getValidMoves(board);
         if (!validMoves.contains(square.getLocation())){
-            throw new IllegalStateException();
+            throw new Exception("Please enter a valid move");
         }
+        Square fromSq = this.getCurrentSquare();
+        move(square,board);
+        List<Piece>pieces = this.isWhite()?board.getWhitePieces():board.getBlackPieces();
+        King king = null;
+        if (this.getType().equals(PiecesType.KING)){
+            king = (King) this;
+        }
+        else {
+            for (Piece piece : pieces) {
+                if (piece.getType().equals(PiecesType.KING)) {
+                    king = (King) piece;
+                }
+            }
+        }
+        if (king.isInCheck(board)){
+            move(fromSq,board);
+            throw new Exception("Your king is checked , please enter a valid move");
+
+        }
+
+
+
+    }
+    public void move(Square square,Board board){
         this.currentSquare.reset();
         square.setCurrentPiece(this);
         square.setOccupied(true);
         this.setCurrentSquare(square);
+    }
 
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "type=" + type +
+                ", currentSquare=" + currentSquare +
+                ", isWhite=" + isWhite +
+                '}';
     }
 }

@@ -35,7 +35,6 @@ public class Knight extends Piece{
         moves.add(LocationFactory.build( current,2, -1));
         moves.add(LocationFactory.build( current,-2, -1));
         List<Location> validMoves = moves.stream().filter(squareMap::containsKey).toList();
-        System.out.println(validMoves);
         return validMoves;
 
 

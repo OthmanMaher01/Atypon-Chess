@@ -1,11 +1,15 @@
 package game;
 
+import Pieces.King;
+import Pieces.Piece;
 import Squares.Location;
 import Squares.Square;
 import enums.File;
+import enums.PiecesType;
 import player.Player;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -31,30 +35,27 @@ public class ChessGame {
         return board.getLocationMap().get(new Location(file,rank));
 
     }
-    public void validateSquare(Square fromSq){
-     //   System.out.println(!(fromSq.isOccupied() && isWhiteTurn && fromSq.getCurrentPiece().isWhite()));
-
+    public void validateSquare(Square fromSq) throws Exception {
                if (!(isWhiteTurn==fromSq.getCurrentPiece().isWhite())){
-               // if (!(fromSq.isOccupied() && isWhiteTurn && fromSq.getCurrentPiece().isWhite())){
-            throw new IllegalStateException("validate square");
+                   throw new Exception("Please choose one of your pieces");
         }
 
 
     }
-    // return array of string and use it
-    public String[] takePlayerInput(){
+    public String[] takePlayerInput() throws Exception {
         System.out.print("Enter next move ("+(isWhiteTurn?"white player":"black player")+"): ");
         String line  = scanner.nextLine();
         String[] arrOfLines = line.split("\\s+");
         Map<Location, Square> squareMap = board.getLocationMap();
         if (arrOfLines.length != 3){
-            throw new IllegalStateException();
+            throw new Exception("Please enter a valid input");
+
         }
         String mv=arrOfLines[0];
         String firstMove=arrOfLines[1];
         String secondMove= arrOfLines[2];
         if (!mv.equals("move")&& !firstMove.matches("[a-h][1-8]") || !secondMove.matches("[a-h][1-8]")){
-            throw new IllegalStateException("validate input");
+            throw new Exception("Please enter a valid input");
         }
         return arrOfLines;
     }
@@ -62,6 +63,18 @@ public class ChessGame {
         board.printBoard();
         while(true) {
             try {
+                List<Piece> pieces = isWhiteTurn?board.getWhitePieces():board.getBlackPieces();
+                King king = null;
+                for (Piece piece : pieces) {
+                    if (piece.getType().equals(PiecesType.KING)) {
+                        king = (King) piece;
+                    }
+                }
+                if (king.isInCheckMate(board)){
+                    String color = isWhiteTurn?"White":"Black";
+                    System.out.println(color+"Player wins");
+                    break;
+                }
                 String[] inputs = takePlayerInput();
                 String from = inputs[1];
                 String to = inputs[2];
@@ -72,8 +85,7 @@ public class ChessGame {
                 board.printBoard();
                 isWhiteTurn=!isWhiteTurn;
             }catch (Exception e){
-                System.out.println(e);
-                System.out.println("Please enter valid move");
+                System.out.println(e.getMessage());
             }
         }
     }

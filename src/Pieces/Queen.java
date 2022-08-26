@@ -27,8 +27,9 @@ public class Queen extends Piece{
     public List<Location> getValidMoves(Board board) {
 
         List<Location> validMoves = new ArrayList<>();
-        validMoves.addAll(bishop.getValidMoves(board, this.getCurrentSquare()));
         validMoves.addAll(rook.getValidMoves(board, this.getCurrentSquare()));
+        validMoves.addAll(bishop.getValidMoves(board, this.getCurrentSquare()));
+
         for (int i=1;i<validMoves.size();i++){
             if (validMoves.get(i).getFile() == validMoves.get(i-1).getFile()||validMoves.get(i).getFile().equals(this.getCurrentSquare().getLocation().getFile())){
                 validMoves.remove(i);

@@ -17,6 +17,8 @@ public class Board {
     private final Integer boardSize=8;
     private final Map<Location, Square> locationMap;
     Square[][] board= new Square[boardSize][boardSize];
+    private final List<Piece> whitePieces = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
 
     public List<Piece> getWhitePieces() {
         return whitePieces;
@@ -26,8 +28,6 @@ public class Board {
         return blackPieces;
     }
 
-    private final List<Piece> whitePieces = new ArrayList<>();
-    private final List<Piece> blackPieces = new ArrayList<>();
 
 
     public Board() {

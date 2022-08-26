@@ -16,18 +16,6 @@ public class Rook extends Piece{
         type= PiecesType.ROOK;
     }
 
-    @Override
-    public List<Location> getValidMoves(Board board, Square square) {
-        List<Location> validMoves = new ArrayList<>();
-        Map<Location, Square> squareMap = board.getLocationMap();
-        Location current = square.getLocation();
-        getFileCandidates(validMoves, squareMap, current, -1);
-        getFileCandidates(validMoves, squareMap, current, 1);
-        getRankCandidates(validMoves, squareMap, current, -1);
-        getRankCandidates(validMoves, squareMap, current, 1);
-        System.out.println("Rook : "+validMoves);
-        return validMoves;
-    }
 
     private void getFileCandidates(
             List<Location> moveCandidates,
@@ -79,6 +67,17 @@ public class Rook extends Piece{
         List<Location> validMoves = new ArrayList<>();
         Map<Location, Square> squareMap = board.getLocationMap();
         Location current = this.getCurrentSquare().getLocation();
+        getFileCandidates(validMoves, squareMap, current, -1);
+        getFileCandidates(validMoves, squareMap, current, 1);
+        getRankCandidates(validMoves, squareMap, current, -1);
+        getRankCandidates(validMoves, squareMap, current, 1);
+        return validMoves;
+    }
+    @Override
+    public List<Location> getValidMoves(Board board, Square square) {
+        List<Location> validMoves = new ArrayList<>();
+        Map<Location, Square> squareMap = board.getLocationMap();
+        Location current = square.getLocation();
         getFileCandidates(validMoves, squareMap, current, -1);
         getFileCandidates(validMoves, squareMap, current, 1);
         getRankCandidates(validMoves, squareMap, current, -1);

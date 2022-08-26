@@ -5,8 +5,7 @@ import Squares.Square;
 import enums.PiecesType;
 import game.Board;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class King extends Piece {
@@ -35,6 +34,7 @@ public class King extends Piece {
         validMoves.addAll(bishop.getValidMoves(board, this.getCurrentSquare()));
         Location current = this.getCurrentSquare().getLocation();
         return validMoves.stream().filter(move->{
+
             if(Math.abs(move.getFile().ordinal()-current.getFile().ordinal())==1 && Math.abs(move.getRank()- current.getRank())==1){
                 return true;
             }
@@ -48,46 +48,42 @@ public class King extends Piece {
 
     }
 
+    public  boolean isInCheck(Board board)
+    {
+    List<Piece>enemies = this.isWhite()?board.getBlackPieces():board.getWhitePieces();
+    for (Piece piece : enemies) {
+        List<Location> enemyMoves = piece.getValidMoves(board);
+        if (enemyMoves.contains(this.getCurrentSquare().getLocation())) {
+            return true;
+        }
+    }
+       return false;
+    }
+    public boolean isInCheckMate(Board board){
+        if (this.isInCheck(board)){
+            List<Piece>pieces = this.isWhite()?board.getWhitePieces():board.getBlackPieces();
+            Map<Location, Square> squareMap = board.getLocationMap();
 
-//    public boolean isInCheckmate(Board board)
-//    {
-//        Vector<Piece> enemies = this.player.getEnemyPieces(this.player.playerColor);
-//        Vector<Piece> attackingEnemies = new Vector<Piece>(1);
-//
-//        for(int i = 0; i < enemies.size(); i++)
-//        {
-//            if(enemies.elementAt(i).getType() != Type.KING && canKillKing(enemies.elementAt(i), this.x, this.y))
-//            {
-//                kingInCheck = true;
-//                /*
-//                 * if there's more than one enemy that can kill the king in a given space,
-//                 * an ally cannot defend against both, and it cannot defend against knights.
-//                 */
-//                if(attackingEnemies.size() < 2 && enemies.elementAt(i).getType() != Type.KNIGHT)
-//                {
-//                    //keep a list of attacking enemies to potentially require an ally to defend against
-//                    attackingEnemies.add(enemies.elementAt(i));
-//                }
-//            }
-//        }
-//
-//        if(!kingCanMove(this.x, this.y)
-//                && !kingCanMove(this.x + 1, this.y)
-//                && !kingCanMove(this.x + 1, this.y + 1)
-//                && !kingCanMove(this.x + 1, this.y - 1)
-//                && !kingCanMove(this.x - 1, this.y)
-//                && !kingCanMove(this.x - 1, this.y + 1)
-//                && !kingCanMove(this.x - 1, this.y - 1)
-//                && !kingCanMove(this.x + 1, this.y + 1))
-//        {
-//            //if(allyCanDefend(attackingEnemies))
-//            //return false;
-//
-//
-//            return true;
-//
-//        }
-//        return false;
-//    }
+            for (Piece piece : pieces) {
+                Square fromSquare = piece.getCurrentSquare();
+                List<Location>validMoves = piece.getValidMoves(board);
+                for (Location move : validMoves){
+                    Square pieceMove = squareMap.get(move);
+                    piece.move(pieceMove,board);
+                    if (this.isInCheck(board) || piece.getType().equals(PiecesType.KING)){
+                        piece.move(fromSquare,board);
+                       continue;
+                    }
+                    piece.move(fromSquare,board);
+                    return false;
+
+                }
+            }
+
+            return true;
+            }
+
+        return false;
+    }
 
 }

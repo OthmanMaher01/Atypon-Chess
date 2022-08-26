@@ -25,7 +25,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void movePiece(Square square, Board board) {
+    public void movePiece(Square square, Board board) throws Exception {
         super.movePiece(square, board);
         if (isFirstMove) {
             isFirstMove = false;

@@ -40,4 +40,10 @@ public class Square {
         isOccupied = occupied;
     }
 
+    @Override
+    public String toString() {
+        return "Square{" +
+                "location=" + location +
+                '}';
+    }
 }
