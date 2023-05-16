@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String args[])  //static method
     {
-        ////hahahahahahahahahahahahahahahaahaasdns;jkfnasjdbfasdbfjksbdfjob
+        ////hahahahahahahahahahahahahahahaahaasdns;jkfnasjdbfasdbfjksbdfjobsdjasdkfhasdukfasduhfaui
         new ChessGame().start();
        /* Board board = new Board();
         board.printBoard();
@@ -27,10 +27,10 @@ public class main {
             Square fromSq = board.getLocationMap().get(new Location(fromFile,fromRank));
             Square toSq = board.getLocationMap().get(new Location(toFile,toRank));
             try {
-                fromSq.getCurrentPiece().movePiece(toSq,board);
+                fromSq.getCurrentPiece().movePiece(toSq,board);asdbaskdbasjkdbasjkdbjk
             }catch (Exception e){
 
-                System.out.println("Try again");
+                System.out.println("Try again");iasdhjksdh;fkashdfhasd;ifb;uidhf;uasdfashdafsdfhad;ukf;auhfasduhfauoh
                 continue;
             }
 
