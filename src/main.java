@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String args[])  //static method
     {
-        ////hahahahahahahahahahahahahahahaaha
+        ////hahahahahahahahahahahahahahahaahaasdns;jkfnasjdbfasdbfjksbdfjob
         new ChessGame().start();
        /* Board board = new Board();
         board.printBoard();
