@@ -13,7 +13,7 @@ public class King extends Piece {
     private final Piece rook;
     private boolean isChecked;
 
-
+    // changes on King by f1
     public King(boolean isWhite) {
         super(isWhite);
         type = PiecesType.KING;
