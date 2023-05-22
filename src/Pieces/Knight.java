@@ -21,6 +21,8 @@ public class Knight extends Piece{
         type= PiecesType.KNIGHT;
     }
 
+    // changes on Knight by f2
+
     @Override
     public List<Location> getValidMoves(Board board) {
         List<Location> moves = new ArrayList<>();
