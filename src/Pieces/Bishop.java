@@ -15,7 +15,7 @@ public class Bishop extends Piece{
         super(isWhite);
         type= PiecesType.BISHOP;
     }
-// BISHOP damn
+    // This is a change made by Zain for the new feature
     @Override
     public List<Location> getValidMoves(Board board) {
         List<Location> validMoves = new ArrayList<>();
