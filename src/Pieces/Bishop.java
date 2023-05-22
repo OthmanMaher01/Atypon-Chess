@@ -16,6 +16,7 @@ public class Bishop extends Piece{
         type= PiecesType.BISHOP;
     }
     // This is a change made by Zain for the new feature
+    // this is f1 change
     @Override
     public List<Location> getValidMoves(Board board) {
         List<Location> validMoves = new ArrayList<>();
