@@ -17,6 +17,7 @@ public class Bishop extends Piece{
     }
     // This is a change made by Zain for the new feature
     // this is f1 change
+    // this is f2 change
     @Override
     public List<Location> getValidMoves(Board board) {
         List<Location> validMoves = new ArrayList<>();
